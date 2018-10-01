@@ -1,13 +1,9 @@
 import random as rd
 import numpy as np
-# MP = []
-# 
-# for i in range(10):
-#     MP.append(input())
-#     
-# print('MP = {}'.format(MP))
 
+import liste_eleve
 # Nombre minimal de personnes avant une boucle
+# A réduire suivants le nombres de participant par classe
 z = 4
 
 # modifier les valeurs dans les range(n) avec le nombre de participant de la classe correspondante
@@ -90,12 +86,27 @@ while check(tocheck, z) == False:
         tocheck = [k[1][1]for k in ordre]
         tocheck += [liste[0][1]]
 # print("restant:{}\nordre:{}".format(liste, ordre))
-print([[k[1], k[2]] for k in ordre])
+# print([[k[1], k[2]] for k in ordre])
 
 
-print(liste)
+# print(liste)
 
 res = check(tocheck,z)
 
 for k in range(9):
     print('{}: {} joueurs avant bouclage'.format(classe[k], res[1][k]))
+    
+tableau = {'MP':liste_eleve.MP ,
+            'HK':liste_eleve.HK ,
+            'KH':liste_eleve.KH ,
+            'PCSI':liste_eleve.PCSI ,
+            'MPSI':liste_eleve.MPSI ,
+            'ECS1':liste_eleve.ECS1 ,
+            'ECS2':liste_eleve.ECS2 ,
+            'PSI':liste_eleve.PSI ,
+            'PC':liste_eleve.PC }
+
+print("\n\n\n\nCarte du jeu !:\n")
+for k in ordre+[[np.array([0]), ordre[-1][2], liste[0]]]+[[np.array([0]), liste[0], premier]]:
+    print('joueur {} a pour cible {}'.format(tableau[classe[k[1][1]]][k[1][0]],
+                                                tableau[classe[k[2][1]]][k[2][0]]))
